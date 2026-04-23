@@ -12,7 +12,7 @@ client = TestClient(app)
 def test_healthz():
     r = client.get("/healthz")
     assert r.status_code == 200
-    assert r.json() == {"status": "ok"}
+    assert r.json() == {"status": "ok", "version": "2.0", "environment": "sandbox"}
 
 
 # ---------------------------------------------------------------------------

@@ -13,7 +13,7 @@ uvicorn main:app --reload
 
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/healthz` | Health check |
+| GET | `/healthz` | Health check — returns `{"status":"ok","version":"2.0","environment":"sandbox"}` |
 | GET | `/items` | List all items |
 | GET | `/items/search?name={query}` | Search items by name |
 | GET | `/items/{id}` | Get item by ID |
