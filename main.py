@@ -13,6 +13,11 @@ def ping():
     return {"ping": "pong"}
 
 
+@app.get("/version")
+def version():
+    return {"name": app.title, "version": app.version}
+
+
 @app.get("/healthz")
 def health():
     return {"status": "ok", "version": "2.0", "environment": "sandbox"}

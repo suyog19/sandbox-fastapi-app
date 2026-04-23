@@ -14,6 +14,7 @@ uvicorn main:app --reload
 | Method | Path | Description |
 |--------|------|-------------|
 | GET | `/ping` | Liveness check — returns `{"ping":"pong"}` |
+| GET | `/version` | App version — returns `{"name":"Sandbox App","version":"1.0.0"}` |
 | GET | `/healthz` | Health check — returns `{"status":"ok","version":"2.0","environment":"sandbox"}` |
 | GET | `/items` | List all items |
 | GET | `/items/search?name={query}` | Search items by name |
