@@ -8,7 +8,10 @@ app = FastAPI(title="Sandbox App", version="1.0.0")
 
 @app.get("/healthz")
 def health():
-    return {"status": "ok"}
+    import time
+    start = time.time()
+    response_time_ms = round((time.time() - start) * 1000, 3)
+    return {"status": "ok", "response_time_ms": response_time_ms}
 
 
 @app.get("/items", response_model=list[Item])
