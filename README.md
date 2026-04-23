@@ -19,3 +19,5 @@ uvicorn main:app --reload
 | GET | `/items/{id}` | Get item by ID |
 | POST | `/items` | Create item |
 | DELETE | `/items/{id}` | Delete item |
+
+<!-- ai-orchestrator: modified at 2026-04-23T13:02:27Z -->
