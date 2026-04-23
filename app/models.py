@@ -1,12 +1,12 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class ItemCreate(BaseModel):
-    name: str
-    description: str = ""
+    name: str = Field(..., max_length=100)
+    description: str = Field(default="", max_length=500)
 
 
 class Item(BaseModel):
     id: int
-    name: str
-    description: str = ""
+    name: str = Field(..., max_length=100)
+    description: str = Field(default="", max_length=500)
