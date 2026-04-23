@@ -8,6 +8,11 @@ app = FastAPI(title="Sandbox App", version="1.0.0")
 _start_time = time.time()
 
 
+@app.get("/ping")
+def ping():
+    return {"ping": "pong"}
+
+
 @app.get("/healthz")
 def health():
     return {"status": "ok", "version": "2.0", "environment": "sandbox"}
