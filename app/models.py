@@ -10,3 +10,8 @@ class Item(BaseModel):
     id: int
     name: str
     description: str = ""
+
+
+class ItemUpdate(BaseModel):
+    name: str | None = None
+    description: str | None = None
