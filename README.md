@@ -18,4 +18,4 @@ uvicorn main:app --reload
 | GET | `/items/search?name={query}` | Search items by name |
 | GET | `/items/{id}` | Get item by ID |
 | POST | `/items` | Create item |
-| DELETE | `/items/{id}` | Delete item |
+| DELETE | `/items/{id}` | Delete item — returns 200 `{"deleted":true,"id":<id>}` |
