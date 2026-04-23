@@ -20,8 +20,6 @@ def version():
 
 @app.get("/healthz")
 def health():
-    uptime_seconds = round(time.time() - _start_time, 2)
-    item_count = len(get_items())
     return {
         "status": "ok",
         "version": "2.0",
