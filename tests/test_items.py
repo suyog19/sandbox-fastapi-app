@@ -119,7 +119,8 @@ def test_update_item_name():
 def test_delete_item():
     created = client.post("/items", json={"name": "to-delete"}).json()
     r = client.delete(f"/items/{created['id']}")
-    assert r.status_code == 204
+    assert r.status_code == 200
+    assert r.json() == {"deleted": True, "id": created["id"]}
 
 
 def test_delete_removes_item():

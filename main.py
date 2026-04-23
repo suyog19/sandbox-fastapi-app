@@ -45,7 +45,8 @@ def update(item_id: int, payload: ItemUpdate):
     return update_item(item_id, new_name, new_description)
 
 
-@app.delete("/items/{item_id}", status_code=204)
+@app.delete("/items/{item_id}", status_code=200)
 def delete(item_id: int):
     if not delete_item(item_id):
         raise HTTPException(status_code=404, detail="Item not found")
+    return {"deleted": True, "id": item_id}
