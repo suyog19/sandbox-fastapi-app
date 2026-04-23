@@ -1,26 +1,25 @@
+import uuid
 from app.models import Item
 
-_store: dict[int, Item] = {}
-_next_id: int = 1
+_store: dict[str, Item] = {}
 
 
 def get_items() -> list[Item]:
     return list(_store.values())
 
 
-def get_item(item_id: int) -> Item | None:
+def get_item(item_id: str) -> Item | None:
     return _store.get(item_id)
 
 
 def create_item(name: str, description: str = "") -> Item:
-    global _next_id
-    item = Item(id=_next_id, name=name, description=description)
-    _store[_next_id] = item
-    _next_id += 1
+    item_id = str(uuid.uuid4())
+    item = Item(id=item_id, name=name, description=description)
+    _store[item_id] = item
     return item
 
 
-def delete_item(item_id: int) -> bool:
+def delete_item(item_id: str) -> bool:
     if item_id not in _store:
         return False
     del _store[item_id]
