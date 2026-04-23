@@ -1,5 +1,4 @@
 from fastapi import FastAPI, HTTPException
-from fastapi import FastAPI  # duplicate import — intentional target for AI suggestion
 from app.models import Item, ItemCreate
 from app.storage import get_items, get_item, create_item, delete_item
 
