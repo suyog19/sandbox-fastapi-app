@@ -8,6 +8,11 @@ def get_items() -> list[Item]:
     return list(_store.values())
 
 
+def search_items_by_name(query: str) -> list[Item]:
+    q = query.lower()
+    return [item for item in _store.values() if q in item.name.lower()]
+
+
 def get_item(item_id: int) -> Item | None:
     return _store.get(item_id)
 
