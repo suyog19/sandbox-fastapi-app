@@ -1,7 +1,7 @@
 import time
 from fastapi import FastAPI, HTTPException
 from app.models import Item, ItemCreate, ItemUpdate
-from app.storage import get_items, get_item, create_item, delete_item, update_item
+from app.storage import get_items, get_item, create_item, delete_item, update_item, search_items_by_name
 
 app = FastAPI(title="Sandbox App", version="1.0.0")
 
