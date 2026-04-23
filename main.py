@@ -7,7 +7,7 @@ app = FastAPI(title="Sandbox App", version="1.0.0")
 
 @app.get("/healthz")
 def health():
-    return {"status": "ok"}
+    return {"status": "ok", "version": "2.0", "environment": "sandbox"}
 
 
 @app.get("/items", response_model=list[Item])
