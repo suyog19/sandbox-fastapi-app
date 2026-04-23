@@ -16,7 +16,7 @@ def list_items():
     return get_items()
 
 
-@app.get("/items/{item_id}", response_model=Item)
+@app.get("/items/{item_id}", response_model=Item, responses={404: {"description": "Item not found", "content": {"application/json": {"example": {"detail": "Item not found"}}}}})
 def read_item(item_id: int):
     item = get_item(item_id)
     if item is None:
