@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from app.models import Item, ItemCreate, ItemUpdate
-from app.storage import get_items, get_item, create_item, delete_item, update_item
+from app.storage import get_items, get_item, create_item, delete_item, update_item, search_items_by_name
 
 app = FastAPI(title="Sandbox App", version="1.0.0")
 
@@ -13,6 +13,11 @@ def health():
 @app.get("/items", response_model=list[Item])
 def list_items():
     return get_items()
+
+
+@app.get("/items/search", response_model=list[Item])
+def search_items(name: str):
+    return search_items_by_name(name)
 
 
 @app.get("/items/{item_id}", response_model=Item)
