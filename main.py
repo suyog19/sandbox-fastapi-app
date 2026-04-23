@@ -10,6 +10,11 @@ def health():
     return {"status": "ok"}
 
 
+@app.get("/items/search", response_model=list[Item])
+def search_items(q: str):
+    return [item for item in get_items() if q.lower() in item.name.lower()]
+
+
 @app.get("/items", response_model=list[Item])
 def list_items():
     return get_items()
