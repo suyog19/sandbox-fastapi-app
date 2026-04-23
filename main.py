@@ -11,8 +11,8 @@ def health():
 
 
 @app.get("/items", response_model=list[Item])
-def list_items():
-    return get_items()
+def list_items(skip: int = 0, limit: int = 100):
+    return get_items()[skip: skip + limit]
 
 
 @app.get("/items/{item_id}", response_model=Item)
