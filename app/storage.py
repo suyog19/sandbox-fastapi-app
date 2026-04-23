@@ -20,6 +20,14 @@ def create_item(name: str, description: str = "") -> Item:
     return item
 
 
+def update_item(item_id: int, name: str, description: str = "") -> Item | None:
+    if item_id not in _store:
+        return None
+    item = Item(id=item_id, name=name, description=description)
+    _store[item_id] = item
+    return item
+
+
 def delete_item(item_id: int) -> bool:
     if item_id not in _store:
         return False

@@ -102,6 +102,17 @@ def test_get_item_returns_correct_fields():
 
 
 # ---------------------------------------------------------------------------
+# Update
+# ---------------------------------------------------------------------------
+
+def test_update_item_name():
+    created = client.post("/items", json={"name": "old-name"}).json()
+    r = client.patch(f"/items/{created['id']}", json={"name": "new-name"})
+    assert r.status_code == 200
+    assert r.json()["name"] == "new-name"
+
+
+# ---------------------------------------------------------------------------
 # Delete
 # ---------------------------------------------------------------------------
 
@@ -139,15 +150,7 @@ def test_double_delete_returns_404():
 # Future features — skip-marked so they appear in pytest output as targets
 # ---------------------------------------------------------------------------
 
-@pytest.mark.skip(reason="planned: PATCH /items/{id} not yet implemented")
-def test_update_item_name():
-    created = client.post("/items", json={"name": "old-name"}).json()
-    r = client.patch(f"/items/{created['id']}", json={"name": "new-name"})
-    assert r.status_code == 200
-    assert r.json()["name"] == "new-name"
-
-
-@pytest.mark.skip(reason="planned: PATCH /items/{id} not yet implemented")
+@pytest.mark.skip(reason="planned: PATCH /items/{id} partial update not yet implemented")
 def test_update_item_description_only():
     created = client.post("/items", json={"name": "keep-name", "description": "old"}).json()
     r = client.patch(f"/items/{created['id']}", json={"description": "new"})
