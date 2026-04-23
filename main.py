@@ -11,9 +11,10 @@ def health():
     return {"status": "ok"}
 
 
-@app.get("/items", response_model=list[Item])
+@app.get("/items")
 def list_items():
-    return get_items()
+    items = get_items()
+    return {"count": len(items), "items": items}
 
 
 @app.get("/items/{item_id}", response_model=Item)
