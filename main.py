@@ -1,0 +1,35 @@
+from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI  # duplicate import — intentional target for AI suggestion
+from app.models import Item, ItemCreate
+from app.storage import get_items, get_item, create_item, delete_item
+
+app = FastAPI(title="Sandbox App", version="1.0.0")
+
+
+@app.get("/healthz")
+def health():
+    return {"status": "ok"}
+
+
+@app.get("/items", response_model=list[Item])
+def list_items():
+    return get_items()
+
+
+@app.get("/items/{item_id}", response_model=Item)
+def read_item(item_id: int):
+    item = get_item(item_id)
+    if item is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return item
+
+
+@app.post("/items", response_model=Item, status_code=201)
+def create(payload: ItemCreate):
+    return create_item(payload.name, payload.description)
+
+
+@app.delete("/items/{item_id}", status_code=204)
+def delete(item_id: int):
+    if not delete_item(item_id):
+        raise HTTPException(status_code=404, detail="Item not found")
