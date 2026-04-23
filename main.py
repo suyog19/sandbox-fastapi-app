@@ -26,7 +26,9 @@ def read_item(item_id: int):
 
 @app.post("/items", response_model=Item, status_code=201)
 def create(payload: ItemCreate):
-    return create_item(payload.name, payload.description)
+    if not payload.name or not payload.name.strip():
+        raise HTTPException(status_code=422, detail="Item name must not be empty")
+    return create_item(payload.name.strip(), payload.description)
 
 
 @app.delete("/items/{item_id}", status_code=204)
