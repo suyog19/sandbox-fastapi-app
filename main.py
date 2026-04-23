@@ -27,6 +27,10 @@ def read_item(item_id: int):
 def create(payload: ItemCreate):
     if not payload.name or not payload.name.strip():
         raise HTTPException(status_code=422, detail="Item name must not be empty")
+    if len(payload.name) > 100:
+        raise HTTPException(status_code=422, detail="Item name must not exceed 100 characters")
+    if payload.description and len(payload.description) > 500:
+        raise HTTPException(status_code=422, detail="Item description must not exceed 500 characters")
     return create_item(payload.name, payload.description)
 
 
