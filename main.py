@@ -15,6 +15,11 @@ def list_items():
     return get_items()
 
 
+@app.get("/items/search", response_model=list[Item])
+def search_items(name: str):
+    return search_items_by_name(name)
+
+
 @app.get("/items/{item_id}", response_model=Item)
 def read_item(item_id: int):
     item = get_item(item_id)
